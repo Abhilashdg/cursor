@@ -1,0 +1,84 @@
+:root {
+    --color: rgb(136, 19, 19);
+    --cursor-size: 60px;
+}
+
+* {
+    cursor: none;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    overflow: hidden;
+    background: #727070;
+}
+
+.custom-cursor {
+    position: absolute;
+    z-index: 99;
+    top: 0;
+    left: 0;
+    width: var(--cursor-size);
+    height: var(--cursor-size);
+    border: calc(var(--cursor-size) / 30) solid rgb(15, 13, 173);
+    border-radius: 100%;
+    animation: cursor 800ms infinite alternate ease-in-out;
+}
+
+.custom-cursor::before {
+    content: "";
+    display: block;
+    width: calc(var(--cursor-size) / 2);
+    height: calc(var(--cursor-size) / 2);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: calc(var(--cursor-size) / 6) solid rgba(var(--color), 0.5);
+    border-radius: 50%;
+    animation: cursor-before 800ms infinite alternate ease-in-out;
+}
+
+.custom-cursor.click {
+    animation: cursor-click 800ms normal ease-in-out;
+}
+
+@keyframes cursor {
+    from {
+        transform: scale(1);
+        border-color: rgb(92, 5, 34);
+    }
+    to {
+        transform: scale(1.5);
+        border-color: rgb(var(--color));
+    }
+}
+
+@keyframes cursor-before {
+    from {
+        transform: translate(-50%, -50%) scale(1);
+        border-color: rgba(var(--color), 0.5);
+    }
+    to {
+        transform: translate(-30%, -50%) scale(1.5);
+        border-color: rgba(var(--color), 0.75);
+    }
+}
+
+@keyframes cursor-click {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(2.5);
+        border-color: rgb(var(--color));
+    }
+    100% {
+        transform: scale(3.5);
+        border-color: rgb(var(--color));
+    }
+}
